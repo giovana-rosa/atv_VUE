@@ -91,8 +91,6 @@ const produtos = [
 </template>
 
 <style scoped>
-
-
 /*HEADER*/
 #divPesquisa {
   position: relative;
