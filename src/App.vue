@@ -1,6 +1,5 @@
 <script setup>
 
-<<<<<<< HEAD
 const produtos = [
     { id: 1, capa: '/img/Chain_of_Iron_Vol.2.png', titulo: 'Chain of Iron: Volume 2', autor: 'Cassandra Clare', preco: '23.24'},
     { id: 2, capa: '/img/Chain_of_Thorns.png', titulo: 'Chain of Thorns', autor: 'Cassandra Clare', preco: '23.24'},
@@ -210,14 +209,4 @@ div.introducaoBanner span {
   background-color: #27AE60; 
   color: #FFFFFF99;
 }
-=======
-</script>
-
-<template>
-  <h1></h1>
-</template>
-
-<style scoped>
-
->>>>>>> 6bb6837bd3384d04f7ca12c657de7d711d88d954
 </style>
