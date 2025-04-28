@@ -1,14 +1,53 @@
 <script setup>
 
 const produtos = [
-    { id: 1, capa: '/img/Chain_of_Iron_Vol.2.png', titulo: 'Chain of Iron: Volume 2', autor: 'Cassandra Clare', preco: '23.24'},
-    { id: 2, capa: '/img/Chain_of_Thorns.png', titulo: 'Chain of Thorns', autor: 'Cassandra Clare', preco: '23.24'},
-    { id: 3, capa: '/img/City_of_Fallen_Angels.png', titulo: 'City of Fallen Angels', autor: 'Cassandra Clare', preco: '13.94'},
-    { id: 4, capa: '/img/Nona_the_Ninth.png', titulo: 'Nona the Ninth', autor: 'Cassandra Clare', preco: '16.84'},
-    { id: 5, capa: '/img/Harlem_Shuffle.png', titulo: 'Harlem Shuffle', autor: 'Colson Whitehead', preco: '26.92'},
-    { id: 6, capa: '/img/Two_Old_Women.png', titulo: 'Two Old Women', autor: 'Velma Wallis', preco: '13.95'},
-    { id: 7, capa: '/img/Carrie_Soto_Is_Back.png', titulo: 'Carrie Soto Is Back', autor: 'Taylor Jenkins Reid', preco: '26.04'},
-    { id: 8, capa: '/img/Book_Lovers.png', titulo: 'Book Lovers', autor: 'Emily Henry', preco: '15.81'},
+    { id: 1,
+      capa: '/img/Chain_of_Iron_Vol.2.png',
+      titulo: 'Chain of Iron: Volume 2',
+      autor: 'Cassandra Clare',
+      preco: '23.24'},
+
+    { id: 2,
+      capa: '/img/Chain_of_Thorns.png',
+      titulo: 'Chain of Thorns',
+      autor: 'Cassandra Clare',
+      preco: '23.24'},
+
+    { id: 3,
+      capa: '/img/City_of_Fallen_Angels.png',
+      titulo: 'City of Fallen Angels',
+      autor: 'Cassandra Clare', 
+      preco: '13.94'},
+
+    { id: 4,
+      capa: '/img/Nona_the_Ninth.png', 
+      titulo: 'Nona the Ninth', 
+      autor: 'Cassandra Clare', 
+      preco: '16.84'},
+
+    { id: 5, 
+      capa: '/img/Harlem_Shuffle.png', 
+      titulo: 'Harlem Shuffle', 
+      autor: 'Colson Whitehead', 
+      preco: '26.92'},
+
+    { id: 6, 
+      capa: '/img/Two_Old_Women.png', 
+      titulo: 'Two Old Women', 
+      autor: 'Velma Wallis', 
+      preco: '13.95'},
+
+    { id: 7, 
+      capa: '/img/Carrie_Soto_Is_Back.png', 
+      titulo: 'Carrie Soto Is Back', 
+      autor: 'Taylor Jenkins Reid', 
+      preco: '26.04'},
+
+    { id: 8, 
+      capa: '/img/Book_Lovers.png', 
+      titulo: 'Book Lovers', 
+      autor: 'Emily Henry', 
+      preco: '15.81'},
   ];
 </script>
 
@@ -23,17 +62,17 @@ const produtos = [
         </div> 
     <nav>
       <ul>
-        <li><a href="#"></a>Termos</li>
-        <li><a href="#"></a>Equipe</li>
-        <li><a href="#"></a>Envio</li>
-        <li><a href="#"></a>Devoluções</li>
+        <li><a href="#">Termos</a></li>
+        <li><a href="#">Equipe</a></li>
+        <li><a href="#">Envio</a></li>
+        <li><a href="#">Devoluções</a></li>
         <li><span class="fa-solid fa-cart-shopping icone"></span></li>
         <li><span class="fa-solid fa-heart icone"></span></li>
         <li><span class="fa-solid fa-user icone-user"></span></li>
       </ul>
     </nav>
-
   </header>
+  <hr />
   <main>
     <section class="banner"> 
       <div class="introducaoBanner">
@@ -47,20 +86,20 @@ const produtos = [
         <p class="paragrafoAoLadoDaImagemLivro">*within the stock limit</p>
       </div>
     </section>
+    <hr />
     <section class="informacoes">
-      <div class="iconesDeInformacaoLadoALado">
-        <div class="icone-truck">
-        <p><span class="fa-solid fa-truck icone-truck"></span>Frete grátis para SC</p>
+      <div class="iconesDeInformacao">
+        <div>
+          <p><span class="fa-solid fa-truck iconeInformacao"></span>Frete grátis para SC</p>
+        </div>
+        <div>
+          <p><span class="fa-solid fa-star iconeInformacao"></span>Livros recomendados</p>
+        </div>
+        <div>
+          <p><span class="fa-solid fa-book-open iconeInformacao"></span>Mais vendidos</p>
+        </div>
       </div>
-      <div class="icone-star">
-        <p><span class="fa-solid fa-star icone-star"></span>Livros recomendados</p>
-      </div>
-      <div>
-        <p><span class="fa-solid fa-book-open icone-book" ></span>Mais vendidos</p>
-      </div>
-      </div>
-    
-      
+      <hr />
     </section> 
     <section class="lancamentos">
       <h2>Lançamentos</h2>
@@ -70,6 +109,55 @@ const produtos = [
         {{ produto.titulo }} {{ produto.autor }} {{ 'R$ ' + Number(produto.preco).toFixed(2).replace('.', ',') }}
         </li>
       </ul>
+    </section>
+    <section class="carinho">
+      <p>IFbooks<span class="IFbook"></span></p>
+    <p class="apreco_leitura">Apreço a <br>
+        leitura</p>
+        <div id="divPesquisa">
+          <input type="text" id="textotBarraDePesquisa" placeholder="Pesquisar" />
+          <button id="lupa" aria-label="Pesquisar"><span class="fa-solid fa-magnifying-glass"></span></button>
+        </div> 
+    <nav>
+      <ul>
+        <li><a href="#">Termos</a></li>
+        <li><a href="#">Equipe</a></li>
+        <li><a href="#">Envio</a></li>
+        <li><a href="#">Devoluções</a></li>
+        <li><span class="fa-solid fa-cart-shopping icone"></span></li>
+        <li><span class="fa-solid fa-heart icone"></span></li>
+        <li><span class="fa-solid fa-user icone-user"></span></li>
+      </ul>
+    </nav>
+    </section>
+    <hr />
+    <section class="footerCarinho">
+      <div class="footer">
+    <div class="esquerdo">
+      <p class="logo">IFbooks</p>
+      <ul class="icones">
+        <li><span class="fa-brands fa-square-facebook" style="color: #ffffff;"></span></li>
+        <li><span class="fa-brands fa-instagram" style="color: #ffffff;"></span></li>
+        <li><span class="fa-brands fa-square-twitter" style="color: #ffffff;"></span></li>
+      </ul>
+    </div>
+    <div class="direito">
+      <div class="contato">
+        <p>Contato</p>
+        <p>
+          <span class="fa-solid fa-phone" style="color: #FFFFFFCC;"></span> +55 47 40045263<br>
+          <span class="fa-solid fa-clock" style="color: #FFFFFFCC;"></span> 8h às 23h - Seg a Sex<br>
+          <span class="fa-solid fa-envelope" style="color: #FFFFFFCC;"></span> contato@ifbooks.com
+        </p>
+      </div>
+      <div class="cartoes">
+        <img src="/img/paypal_card.png" alt="Cartão PAYPAL">
+        <img src="/img/Master_card.png" alt="Cartão MasterCard">
+        <img src="/img/VISA_card.png" alt="Cartão VISA">
+      </div>
+    </div>
+  </div>
+  <p class="direitos">&copy; Alguns direitos reservados. IFbooks 2025.</p>
     </section>
   </main>
   <footer>
@@ -104,6 +192,10 @@ const produtos = [
 
 <style scoped>
 /*HEADER*/
+ hr {
+  color: #27AE60;
+ }
+ 
   #divPesquisa {
   position: relative;
   display: inline-block;
@@ -140,10 +232,6 @@ const produtos = [
   justify-content: center;
 }
 
-  header  {
-  border-bottom: 1px solid #27AE60;
-}
-
   header p div {
   border-bottom: 1px solid #27AE60;
 }
@@ -171,6 +259,11 @@ const produtos = [
   margin: 10px 30px 10px 30px;
 }
 
+  header nav ul li a {
+    text-decoration: none;
+    color: #7b7881;
+  }
+
   .icone {
   color: #27AE60;
   border-right: 1px solid #27AE60;
@@ -181,10 +274,6 @@ const produtos = [
 }
 
 /*MAIN*/
-
-  section.banner {
-  border-bottom: 1px solid #27AE60;
-} 
 
   section.banner  {
   display: flex;
@@ -243,7 +332,9 @@ section.banner div.introducaoBanner button {
 
   section.banner div.capaLivro img{
     margin: 0 0 0 10vw;
-  }
+  } section.carinho div {
+  border-bottom: 1px solid #27AE60;
+}
 
   section.banner div.capaLivro .paragrafoAoLadoDaImagemLivro {
     width: 168.23333740234375px;
@@ -263,36 +354,32 @@ section.banner div.introducaoBanner button {
     height: 33.646644592285156px;
     top: 9.61px;
     left: 4.81px;
-    display: flex;
+
+  }
   
+  
+
+  .iconesDeInformacao  {
+    display: flex;
   }
 
-  section.infomacao div.conesDeInformacaoLadoLado {
-    display: flex;
-  }
-  
-  section.informacoes div.icone-truck p span  {
-    width: 38.453304290771484px;
-    height: 33.646644592285156px;
-    top: 9.61px;
-    left: 4.81px;
-    display: flex;
-  
+  .Informacao p {
+    width: 279.39px;
+    height: 33px;
+    top: 734.22px;
+    left: 637.88px;
   }
 
-  section.informacoes div.icone-star p span  {
-    width: 38.453304290771484px;
-    height: 33.646644592285156px;
-    top: 9.61px;
-    left: 4.81px;
-    display: flex;
-  
+  .iconesDeInformacao p span {
+    font-size: 1.5rem;
   }
 
-  .lancamentos {
-  
-  padding: 0 0 15vw 0;
-}
+
+
+  .iconeInformacao {
+    margin: 0 15px 0 16vw;
+  }
+
 
 
 /*FOOTER*/
@@ -308,7 +395,9 @@ section.banner div.introducaoBanner button {
   .esquerdo {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 15px;display: flex;
+  margin: 2vw 2vw 2vw 3vw;
+  justify-content: center;
 }
 
   .direito {
@@ -347,4 +436,47 @@ section.banner div.introducaoBanner button {
   background-color: #27AE60; 
   color: #FFFFFF99;
 }
+
+/*CARINHO*/
+
+.carinho {
+  display: flex;
+  margin: 2vw 2vw 2vw 3vw;
+  justify-content: center;
+}
+
+  .carinho p div {
+  border-bottom: 1px solid #27AE60;
+}
+
+  .carinho p {
+  text-align: center; 
+}
+
+  .carinho span.IFbook {
+  border-right: 1px solid #27AE60;
+  margin: 0 0 0 10px;
+ 
+}
+
+  .carinho p.apreco_leitura {
+  color: #27AE60;
+  margin: 0 20px 0 10px;
+}
+
+  .carinho ul {
+  display: flex;
+}
+
+  .carinho nav ul li {
+  margin: 10px 30px 10px 30px;
+}
+
+  .carinho nav ul li a {
+    text-decoration: none;
+    color: #7b7881;
+  }
+
+
+
 </style>
