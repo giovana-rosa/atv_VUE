@@ -72,7 +72,7 @@ const produtos = [
       </ul>
     </nav>
   </header>
-  <hr />
+  
   <main>
     <section class="banner"> 
       <div class="introducaoBanner">
@@ -83,23 +83,19 @@ const produtos = [
       </div> 
       <div class="capaLivro">
         <img src="/img/livroBanner.png" alt="Livro do banner">
-        <p class="paragrafoAoLadoDaImagemLivro">*within the stock limit</p>
+        <p class="paragrafoAbaixoDoLivroBanner">*within the stock limit</p>
       </div>
     </section>
-    <hr />
-    <section class="informacoes">
+    
+    <section class="Informacao">
       <div class="iconesDeInformacao">
-        <div>
-          <p><span class="fa-solid fa-truck iconeInformacao"></span>Frete grátis para SC</p>
-        </div>
-        <div>
-          <p><span class="fa-solid fa-star iconeInformacao"></span>Livros recomendados</p>
-        </div>
-        <div>
-          <p><span class="fa-solid fa-book-open iconeInformacao"></span>Mais vendidos</p>
-        </div>
+        <ul>
+          <li class="linhaDivisoria"><span class="fa-solid fa-truck iconeInformacao"></span><a href="#">Frete grátis para SC</a></li>
+          <li class="linhaDivisoria"><span  class="fa-solid fa-star iconeInformacao"></span><a href="#">Livros recomendados</a></li>
+          <li class="linhaDivisoria"><span class="fa-solid fa-book-open iconeInformacaoBook"></span><a href="#">Mais vendidos</a></li>
+        </ul>
       </div>
-      <hr />
+
     </section> 
     <section class="lancamentos">
       <h2>Lançamentos</h2>
@@ -110,38 +106,40 @@ const produtos = [
         </li>
       </ul>
     </section>
-    <section class="carinho">
+    <section class="carrinho">
       <p>IFbooks<span class="IFbook"></span></p>
-    <p class="apreco_leitura">Apreço a <br>
+      <p class="apreco_leitura">Apreço a <br>
         leitura</p>
         <div id="divPesquisa">
           <input type="text" id="textotBarraDePesquisa" placeholder="Pesquisar" />
           <button id="lupa" aria-label="Pesquisar"><span class="fa-solid fa-magnifying-glass"></span></button>
         </div> 
-    <nav>
-      <ul>
-        <li><a href="#">Termos</a></li>
-        <li><a href="#">Equipe</a></li>
-        <li><a href="#">Envio</a></li>
-        <li><a href="#">Devoluções</a></li>
-        <li><span class="fa-solid fa-cart-shopping icone"></span></li>
-        <li><span class="fa-solid fa-heart icone"></span></li>
-        <li><span class="fa-solid fa-user icone-user"></span></li>
-      </ul>
-    </nav>
+      <nav>
+        <ul>
+          <li><a href="#">Termos</a></li>
+          <li><a href="#">Equipe</a></li>
+          <li><a href="#">Envio</a></li>
+          <li><a href="#">Devoluções</a></li>
+          <li><span class="fa-solid fa-cart-shopping icone"></span></li>
+          <li><span class="fa-solid fa-heart icone"></span></li>
+          <li><span class="fa-solid fa-user icone-user"></span></li>
+        </ul>
+      </nav>
     </section>
-    <hr />
-    <section class="footerCarinho">
-      <div class="footer">
-    <div class="esquerdo">
-      <p class="logo">IFbooks</p>
-      <ul class="icones">
-        <li><span class="fa-brands fa-square-facebook" style="color: #ffffff;"></span></li>
-        <li><span class="fa-brands fa-instagram" style="color: #ffffff;"></span></li>
-        <li><span class="fa-brands fa-square-twitter" style="color: #ffffff;"></span></li>
-      </ul>
+  <section class="carrinhoBanner">
+    <h2>Carrinho</h2>
+    <div class="informacoesCarrinhos">
+      <p>Título</p>  
+      <p class="carrinhoQuantidade">Quantidade</p>
+      <p>Subtotal</p>
     </div>
-    <div class="direito">
+  </section>
+    <section class="footerCarrinho">
+      <div class="footer">
+        <div class="esquerdo">
+          <p class="logo">IFbooks</p>
+        </div>
+      <div class="direito">
       <div class="contato">
         <p>Contato</p>
         <p>
@@ -183,19 +181,22 @@ const produtos = [
         <img src="/img/paypal_card.png" alt="Cartão PAYPAL">
         <img src="/img/Master_card.png" alt="Cartão MasterCard">
         <img src="/img/VISA_card.png" alt="Cartão VISA">
+       
       </div>
+    
     </div>
   </div>
   <p class="direitos">&copy; Alguns direitos reservados. IFbooks 2025.</p>
+  
 </footer>
+
 </template>
 
 <style scoped>
 /*HEADER*/
- hr {
-  color: #27AE60;
- }
- 
+hr {
+color: #27AE60;
+}
   #divPesquisa {
   position: relative;
   display: inline-block;
@@ -230,7 +231,10 @@ const produtos = [
   display: flex;
   margin: 2vw 2vw 2vw 3vw;
   justify-content: center;
+  padding: 1vw;
+  border-bottom: 1px solid #27AE60;
 }
+
 
   header p div {
   border-bottom: 1px solid #27AE60;
@@ -243,7 +247,7 @@ const produtos = [
   header span.IFbook {
   border-right: 1px solid #27AE60;
   margin: 0 0 0 10px;
- 
+
 }
 
   header p.apreco_leitura {
@@ -288,13 +292,11 @@ const produtos = [
 
 section.banner div.introducaoBanner p.autor_abril {
   margin: 8vw 2vw 2vw 17vw;
-  
 }
 
 section.banner div.introducaoBanner h1 {
   font-size: 48px;
   margin: 0 2vw 0 17vw;
-  
 }
 
 section.banner div.introducaoBanner p.blocoDeTextoDoBanner {
@@ -327,16 +329,16 @@ section.banner div.introducaoBanner button {
   gap: 10.01px;
   background-color: #27AE60;
   margin: 0 2vw 0 17vw;
-  
 }
 
-  section.banner div.capaLivro img{
+  section.banner div.capaLivro img {
     margin: 0 0 0 10vw;
-  } section.carinho div {
+
+} section.carrinho div {
   border-bottom: 1px solid #27AE60;
 }
 
-  section.banner div.capaLivro .paragrafoAoLadoDaImagemLivro {
+  section.banner div.capaLivro .paragrafoAbaixoDoLivroBanner {
     width: 168.23333740234375px;
     height: 25px;
     top: 586.95px;
@@ -345,44 +347,50 @@ section.banner div.introducaoBanner button {
     font-size: 16px;
     line-height: 24.03px;
     letter-spacing: 0%;
-    margin: 0 0 2vw 25vw ;
+    margin: 0 0 2vw 25vw;
   }
 
-  
-  section.informacoes div.icone-book p span  {
+
+  section.Informacao div.icone-book p span  {
     width: 38.453304290771484px;
     height: 33.646644592285156px;
     top: 9.61px;
     left: 4.81px;
+  }
+
+  section.Informacao {
+    border-top: 1px solid #27AE60;
+    border-bottom: 1px solid #27AE60;
+    padding: 4vw 0 4vw 0;
 
   }
-  
-  
 
-  .iconesDeInformacao  {
+  .iconesDeInformacao ul   {
     display: flex;
   }
 
-  .Informacao p {
-    width: 279.39px;
+
+  .iconesDeInformacao ul li a {
+    text-decoration: none;
+    color: #000000;
+    width: 279.3875427246094px;
     height: 33px;
     top: 734.22px;
     left: 637.88px;
+    font-size: 22px;
+  } 
+
+  .iconesDeInformacao  span {
+    font-size: 1.6rem;
+     margin: 0 15px 0 16vw;
   }
 
-  .iconesDeInformacao p span {
-    font-size: 1.5rem;
-  }
-
-
-
-  .iconeInformacao {
+  .iconeInformacaoBook {
     margin: 0 15px 0 16vw;
   }
 
-
-
 /*FOOTER*/
+ 
   .footer {
   display: flex;
   justify-content: space-between;
@@ -400,7 +408,8 @@ section.banner div.introducaoBanner button {
   justify-content: center;
 }
 
-  .direito {
+  .direitos {
+  border-top: 1px solid #ffff;
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -429,6 +438,10 @@ section.banner div.introducaoBanner button {
   margin-right: 10px;
 }
 
+  .direito {
+    border-bottom: 1px solid #ffff;
+  }
+
   .direitos {
   text-align: center;
   padding: 15px;
@@ -439,43 +452,73 @@ section.banner div.introducaoBanner button {
 
 /*CARINHO*/
 
-.carinho {
+.carrinho {
   display: flex;
   margin: 2vw 2vw 2vw 3vw;
   justify-content: center;
+  border-bottom: 1px solid #27AE60;
+  padding: 1vw;
 }
 
-  .carinho p div {
+  .carrinho p div {
   border-bottom: 1px solid #27AE60;
 }
 
-  .carinho p {
+  .carrinho p {
   text-align: center; 
 }
 
-  .carinho span.IFbook {
+  .carrinho span.IFbook {
   border-right: 1px solid #27AE60;
   margin: 0 0 0 10px;
  
 }
 
-  .carinho p.apreco_leitura {
+  .carrinho p.apreco_leitura {
   color: #27AE60;
   margin: 0 20px 0 10px;
 }
 
-  .carinho ul {
+  .carrinho ul {
   display: flex;
 }
 
-  .carinho nav ul li {
+  .carrinho nav ul li {
   margin: 10px 30px 10px 30px;
 }
 
-  .carinho nav ul li a {
-    text-decoration: none;
-    color: #7b7881;
+.carrinho nav ul li a {
+  text-decoration: none;
+  color: #7b7881;
+}
+
+.linhaDivisoria {
+  border-left: 1px solid #ccc;
+  padding-left: 10px;
+  margin-left: 10px;
+}
+
+
+  
+
+  section.carrinhoBanner h2 {
+    color: #27AE60;
+    font-size: 38px;
+    margin: 7vw 0 0 14vw;
+}
+
+  section.carrinhoBanner .informacoesCarrinhos {
+    display: flex;
+    font-size: 24px;
+    border-bottom: 1px solid #27AE60;
+    margin: 3vw 14vw 5vw;
   }
+
+  section.carrinhoBanner .informacoesCarrinhos p.carrinhoQuantidade {
+    margin: 0 25vw 0 30vw;
+  }
+
+  
 
 
 
