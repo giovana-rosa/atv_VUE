@@ -101,30 +101,15 @@ const produtos = [
       <h2>Lançamentos</h2>
       <ul>
         <li v-for="produto in produtos" :key="produto.id">
+          <article>
         <img :src="produto.capa" alt="Capa do livro" />
-        {{ produto.titulo }} {{ produto.autor }} {{ 'R$ ' + Number(produto.preco).toFixed(2).replace('.', ',') }}
+        <h3>{{ produto.titulo }} </h3>
+        <p></p>
+        {{ produto.autor }} {{ 'R$ ' + Number(produto.preco).toFixed(2).replace('.', ',') }}
+
+      </article>
         </li>
       </ul>
-    </section>
-    <section class="carrinho">
-      <p>IFbooks<span class="IFbook"></span></p>
-      <p class="apreco_leitura">Apreço a <br>
-        leitura</p>
-        <div id="divPesquisa">
-          <input type="text" id="textotBarraDePesquisa" placeholder="Pesquisar" />
-          <button id="lupa" aria-label="Pesquisar"><span class="fa-solid fa-magnifying-glass"></span></button>
-        </div> 
-      <nav>
-        <ul>
-          <li><a href="#">Termos</a></li>
-          <li><a href="#">Equipe</a></li>
-          <li><a href="#">Envio</a></li>
-          <li><a href="#">Devoluções</a></li>
-          <li><span class="fa-solid fa-cart-shopping icone"></span></li>
-          <li><span class="fa-solid fa-heart icone"></span></li>
-          <li><span class="fa-solid fa-user icone-user"></span></li>
-        </ul>
-      </nav>
     </section>
   <section class="carrinhoBanner">
     <h2>Carrinho</h2>
@@ -134,29 +119,25 @@ const produtos = [
       <p>Subtotal</p>
     </div>
   </section>
-    <section class="footerCarrinho">
-      <div class="footer">
-        <div class="esquerdo">
-          <p class="logo">IFbooks</p>
-        </div>
-      <div class="direito">
-      <div class="contato">
-        <p>Contato</p>
-        <p>
-          <span class="fa-solid fa-phone" style="color: #FFFFFFCC;"></span> +55 47 40045263<br>
-          <span class="fa-solid fa-clock" style="color: #FFFFFFCC;"></span> 8h às 23h - Seg a Sex<br>
-          <span class="fa-solid fa-envelope" style="color: #FFFFFFCC;"></span> contato@ifbooks.com
-        </p>
+  <section class="carrinhoBotoes">
+    <div class="funcionalidadesCarinho">
+      <div>
+        <button class="voltarLoja"><a href="#">Voltar para loja</a></button>
       </div>
-      <div class="cartoes">
-        <img src="/img/paypal_card.png" alt="Cartão PAYPAL">
-        <img src="/img/Master_card.png" alt="Cartão MasterCard">
-        <img src="/img/VISA_card.png" alt="Cartão VISA">
+      <div>
+        <input type="text" id="cupomDeDesconto" placeholder="Código do cupom" />
+        <button class="inserirCupom">Inserir Cupom</button>
+      </div>
+      <div class="totalDaCompraCarrinho">
+        <p class="totalCompra">Total da Compra</p>
+        <p class="produtos">Produtos:</p>
+        <p class="frete">Frete:</p>
+        <p>Total:</p>
+        <button>Ir para o pagamento</button>
       </div>
     </div>
-  </div>
-  <p class="direitos">&copy; Alguns direitos reservados. IFbooks 2025.</p>
-    </section>
+  </section>
+   
   </main>
   <footer>
   <div class="footer">
@@ -229,9 +210,8 @@ color: #27AE60;
 
   header {
   display: flex;
-  margin: 2vw 2vw 2vw 3vw;
+  padding: 2vw 2vw 2vw 3vw;
   justify-content: center;
-  padding: 1vw;
   border-bottom: 1px solid #27AE60;
 }
 
@@ -438,10 +418,6 @@ section.banner div.introducaoBanner button {
   margin-right: 10px;
 }
 
-  .direito {
-    border-bottom: 1px solid #ffff;
-  }
-
   .direitos {
   text-align: center;
   padding: 15px;
@@ -450,47 +426,18 @@ section.banner div.introducaoBanner button {
   color: #FFFFFF99;
 }
 
+/* lançamentos */
+section.lancamentos ul{
+  display: flex;
+  flex-wrap: wrap;
+}
+section.lancamentos ul li{
+  width: 22%;
+}
+
+
 /*CARINHO*/
 
-.carrinho {
-  display: flex;
-  margin: 2vw 2vw 2vw 3vw;
-  justify-content: center;
-  border-bottom: 1px solid #27AE60;
-  padding: 1vw;
-}
-
-  .carrinho p div {
-  border-bottom: 1px solid #27AE60;
-}
-
-  .carrinho p {
-  text-align: center; 
-}
-
-  .carrinho span.IFbook {
-  border-right: 1px solid #27AE60;
-  margin: 0 0 0 10px;
- 
-}
-
-  .carrinho p.apreco_leitura {
-  color: #27AE60;
-  margin: 0 20px 0 10px;
-}
-
-  .carrinho ul {
-  display: flex;
-}
-
-  .carrinho nav ul li {
-  margin: 10px 30px 10px 30px;
-}
-
-.carrinho nav ul li a {
-  text-decoration: none;
-  color: #7b7881;
-}
 
 .linhaDivisoria {
   border-left: 1px solid #ccc;
@@ -498,8 +445,6 @@ section.banner div.introducaoBanner button {
   margin-left: 10px;
 }
 
-
-  
 
   section.carrinhoBanner h2 {
     color: #27AE60;
@@ -518,8 +463,68 @@ section.banner div.introducaoBanner button {
     margin: 0 25vw 0 30vw;
   }
 
-  
+  section.carrinhoBotoes .funcionalidadesCarinho button.voltarLoja {
+    background-color: white;
+    border: none;
+    border: 1px solid #000000;
+    padding: 0.8vw 2vw 0.8vw 2vw;
+    border-radius: 4px;
+    margin: 0 13vw 2vw 13vw;
+  }
+
+  section.carrinhoBotoes .funcionalidadesCarinho button.voltarLoja a {
+    text-decoration: none;
+    color: #000000;
+    font-size: 1.3rem;
+  }
+
+  section.carrinhoBotoes div input {
+    padding: 0.8vw 2vw 0.8vw 1.4vw;
+    margin: 0 1vw 0 13vw;
+    border: 1px solid #000000;
+    border-radius: 4px;
+  }
+
+  section.carrinhoBotoes button.inserirCupom {
+    border: 1px solid #27AE60;
+    background-color: #27AE60;
+    padding: 0.8vw 1.5vw 0.8vw 1.5vw;
+    text-decoration: none;
+    color: white;
+    border-radius: 4px;
+  }
+
+  section.carrinhoBotoes div.totalDaCompraCarrinho {
+    border: 1px solid #000000;
+    width: 470px;
+    height: 324px;
+    margin: 0 0 3vw 65vw;
+  } 
+
+  section.carrinhoBotoes div.totalDaCompraCarrinho  p {
+    margin: 1vw 1vw 0 1vw;
+  }
 
 
+  section.carrinhoBotoes div.totalDaCompraCarrinho p.totalCompra {
+    font-size: 1vw;
+  }
 
+  section.carrinhoBotoes div.totalDaCompraCarrinho p.produtos {
+    border-bottom: 1px solid #000000;
+  }
+
+  section.carrinhoBotoes div.totalDaCompraCarrinho p.frete {
+    border-bottom: 1px solid #000000;
+  }
+
+  section.carrinhoBotoes div.totalDaCompraCarrinho button {
+    border: 1px solid #27AE60;
+    background-color: #27AE60;
+    padding: 0.8vw 1.5vw 0.8vw 1.5vw;
+    text-decoration: none;
+    color: white;
+    border-radius: 4px;
+    margin: 1vw 1vw 0 6vw;
+  }
 </style>
