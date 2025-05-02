@@ -1,54 +1,57 @@
 <script setup>
+import {ref, computed} from 'vue'
 
 const produtos = [
     { id: 1,
       capa: '/img/Chain_of_Iron_Vol.2.png',
       titulo: 'Chain of Iron: Volume 2',
       autor: 'Cassandra Clare',
-      preco: '23.24'},
+      preco: 23.24},
 
     { id: 2,
       capa: '/img/Chain_of_Thorns.png',
       titulo: 'Chain of Thorns',
       autor: 'Cassandra Clare',
-      preco: '23.24'},
+      preco: 23.24},
 
     { id: 3,
       capa: '/img/City_of_Fallen_Angels.png',
       titulo: 'City of Fallen Angels',
       autor: 'Cassandra Clare', 
-      preco: '13.94'},
+      preco: 13.94},
 
     { id: 4,
       capa: '/img/Nona_the_Ninth.png', 
       titulo: 'Nona the Ninth', 
       autor: 'Cassandra Clare', 
-      preco: '16.84'},
+      preco: 16.84},
 
     { id: 5, 
       capa: '/img/Harlem_Shuffle.png', 
       titulo: 'Harlem Shuffle', 
       autor: 'Colson Whitehead', 
-      preco: '26.92'},
+      preco: 26.92},
 
     { id: 6, 
       capa: '/img/Two_Old_Women.png', 
       titulo: 'Two Old Women', 
       autor: 'Velma Wallis', 
-      preco: '13.95'},
+      preco: 13.95},
 
     { id: 7, 
       capa: '/img/Carrie_Soto_Is_Back.png', 
       titulo: 'Carrie Soto Is Back', 
       autor: 'Taylor Jenkins Reid', 
-      preco: '26.04'},
+      preco: 26.04},
 
     { id: 8, 
       capa: '/img/Book_Lovers.png', 
       titulo: 'Book Lovers', 
       autor: 'Emily Henry', 
-      preco: '15.81'},
+      preco: 15.81},
   ];
+
+      const cupom = GIO15; 
 </script>
 
 <template>
@@ -78,7 +81,7 @@ const produtos = [
       <div class="introducaoBanner">
         <p class="autor_abril"><span>Autor de Abril</span></p>
         <h1>Eric-Emanuel Schmitt</h1>
-        <p class="blocoDeTextoDoBanner">Eric-Emmanuel Schmitt has been awarded more than 20 literary prizes and distinctions, and in 2001 he received the title of Chevalier des Arts et des Lettres. His books have been translated into over 40 languages.</p>
+        <p class="textoBanner">Eric-Emmanuet Schmitt has been awarded more than 20 literary prizes and distinctions, and in 2001 he received the title of Chevalier des Arts et des Lettres. His books have been translated into over 40 languages.</p>
         <button>Acessar página do livro</button>
       </div> 
       <div class="capaLivro">
@@ -95,19 +98,18 @@ const produtos = [
           <li class="linhaDivisoria"><span class="fa-solid fa-book-open iconeInformacaoBook"></span><a href="#">Mais vendidos</a></li>
         </ul>
       </div>
-
     </section> 
     <section class="lancamentos">
       <h2>Lançamentos</h2>
       <ul>
         <li v-for="produto in produtos" :key="produto.id">
           <article>
-        <img :src="produto.capa" alt="Capa do livro" />
-        <h3>{{ produto.titulo }} </h3>
-        <p></p>
-        {{ produto.autor }} {{ 'R$ ' + Number(produto.preco).toFixed(2).replace('.', ',') }}
-
-      </article>
+            <img :src="produto.capa" alt="Capa do livro" class=capaLancamentos/>
+            <h3>{{ produto.titulo }}</h3>
+            <p>{{ produto.autor }}</p>
+            <p>{{ 'R$ ' + produto.preco.toFixed(2).replace('.', ',') }}</p>
+            <button class="botaoComprar"><span class="fa-solid fa-cart-shopping" style="color: white;"></span> Comprar</button>
+          </article>
         </li>
       </ul>
     </section>
@@ -174,16 +176,28 @@ const produtos = [
 </template>
 
 <style scoped>
+
+/* GERAL */
+
+p, h1, h2, h3, h4, h5, h6 {
+  font-family: Arial, Helvetica, sans-serif;
+}
+button {
+  cursor: pointer;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 /*HEADER*/
+
 hr {
 color: #27AE60;
 }
-  #divPesquisa {
+#divPesquisa {
   position: relative;
   display: inline-block;
 }
 
-  #textotBarraDePesquisa {
+#textotBarraDePesquisa {
   padding-right: 35px; /* espaço pra lupa não ficar em cima do texto */
   width: 376.52px;
   height: 36.05px;
@@ -196,7 +210,7 @@ color: #27AE60;
   font-family: Arial, Helvetica, sans-serif;
 }
 
-  #lupa {
+#lupa {
   position: absolute;
   right: 5px;
   top: 50%;
@@ -208,166 +222,131 @@ color: #27AE60;
   font-size: 16px;
 }
 
-  header {
+header {
   display: flex;
   padding: 2vw 2vw 2vw 3vw;
   justify-content: center;
   border-bottom: 1px solid #27AE60;
 }
-
-
-  header p div {
+header p div {
   border-bottom: 1px solid #27AE60;
 }
-
-  header p {
+header p {
   text-align: center; 
 }
-
-  header span.IFbook {
+header span.IFbook {
   border-right: 1px solid #27AE60;
   margin: 0 0 0 10px;
-
 }
-
-  header p.apreco_leitura {
+header p.apreco_leitura {
   color: #27AE60;
   margin: 0 20px 0 10px;
 }
-
-  header ul {
+header ul {
   display: flex;
 }
-
-  header nav ul li {
+header nav ul li {
   margin: 10px 30px 10px 30px;
 }
-
-  header nav ul li a {
-    text-decoration: none;
-    color: #7b7881;
-  }
-
-  .icone {
+header nav ul li a {
+  text-decoration: none;
+  color: #7b7881;
+}
+.icone {
   color: #27AE60;
   border-right: 1px solid #27AE60;
 }
-
-  .icone-user {
+.icone-user {
   color: #27AE60;
 }
 
 /*MAIN*/
 
-  section.banner  {
+section.banner  {
   display: flex;
 }
-
-  div.introducaoBanner span {
-  border: 1px solid #27AE60;
+div.introducaoBanner span {
+   border: 1px solid #27AE60;
   padding: 10.01px;
   border-radius: 3px;
   color: #27AE60;
 }
-
 section.banner div.introducaoBanner p.autor_abril {
-  margin: 8vw 2vw 2vw 17vw;
+  margin: 8vw 2vw 3vw 17vw;
 }
-
 section.banner div.introducaoBanner h1 {
   font-size: 48px;
   margin: 0 2vw 0 17vw;
 }
-
-section.banner div.introducaoBanner p.blocoDeTextoDoBanner {
+section.banner div.introducaoBanner p.textoBanner {
   color: #4D4C4C;
   font-size: 16px;
-  margin: 3vw 0 2vw 17vw;
+  margin: 3vw 0 3vw 17vw;
   width: 477.6625061035156px;
   line-height: 24.03px;
   letter-spacing: 0%;
   font-weight: 400;
 }
-
 section.banner div.introducaoBanner button {
   color: white;
-  font-size: 16.02px;
-  width: 179px;
-  height: 25px;
-  font-weight: 500;
-  line-height: 24.03px;
-  letter-spacing: 0%;
   width: 243.08889770507812px;
   height: 49.03333282470703px;
   top: 516.85px;
   left: 164.23px;
   border-radius: 2px;
-  top: 12.02px;
-  right: 32.04px;
-  bottom: 12.02px;
-  left: 32.04px;
+  padding-top: 12.02px;
+  padding-right: 32.04px;
+  padding-bottom: 12.02px;
+  padding-left: 32.04px;
   gap: 10.01px;
   background-color: #27AE60;
   margin: 0 2vw 0 17vw;
+  border: none;
 }
-
-  section.banner div.capaLivro img {
-    margin: 0 0 0 10vw;
-
-} section.carrinho div {
+section.banner div.capaLivro img {
+  margin: 0 0 0 10vw;
+} 
+section.carrinho div {
   border-bottom: 1px solid #27AE60;
 }
-
-  section.banner div.capaLivro .paragrafoAbaixoDoLivroBanner {
-    width: 168.23333740234375px;
-    height: 25px;
-    top: 586.95px;
-    left: 1150.61px;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 24.03px;
-    letter-spacing: 0%;
-    margin: 0 0 2vw 25vw;
-  }
-
-
-  section.Informacao div.icone-book p span  {
-    width: 38.453304290771484px;
-    height: 33.646644592285156px;
-    top: 9.61px;
-    left: 4.81px;
-  }
-
-  section.Informacao {
-    border-top: 1px solid #27AE60;
-    border-bottom: 1px solid #27AE60;
-    padding: 4vw 0 4vw 0;
-
-  }
-
-  .iconesDeInformacao ul   {
-    display: flex;
-  }
-
-
-  .iconesDeInformacao ul li a {
-    text-decoration: none;
-    color: #000000;
-    width: 279.3875427246094px;
-    height: 33px;
-    top: 734.22px;
-    left: 637.88px;
-    font-size: 22px;
-  } 
-
-  .iconesDeInformacao  span {
-    font-size: 1.6rem;
-     margin: 0 15px 0 16vw;
-  }
-
-  .iconeInformacaoBook {
-    margin: 0 15px 0 16vw;
-  }
+section.banner div.capaLivro .paragrafoAbaixoDoLivroBanner {
+  width: 168.23333740234375px;
+  height: 25px;
+  top: 586.95px;
+  left: 1150.61px;
+  font-size: 16px;
+  margin: 0 0 2vw 25vw;
+}
+section.Informacao div.icone-book p span  {
+  width: 38.453304290771484px;
+  height: 33.646644592285156px;
+  top: 9.61px;
+  left: 4.81px;
+}
+section.Informacao {
+  border-top: 1px solid #27AE60;
+  border-bottom: 1px solid #27AE60;
+  padding: 4vw 0 4vw 0;
+}
+.iconesDeInformacao ul   {
+  display: flex;
+}
+.iconesDeInformacao ul li a {
+  text-decoration: none;
+  color: #000000;
+  width: 279.3875427246094px;
+  height: 33px;
+  top: 734.22px;
+  left: 637.88px;
+  font-size: 22px;
+} 
+.iconesDeInformacao  span {
+  font-size: 1.6rem;
+  margin: 0 15px 0 16vw;
+}
+.iconeInformacaoBook {
+  margin: 0 15px 0 16vw;
+}
 
 /*FOOTER*/
  
@@ -426,7 +405,15 @@ section.banner div.introducaoBanner button {
   color: #FFFFFF99;
 }
 
-/* lançamentos */
+/* LAÇAMENTOS */
+
+section.lancamentos h2 {
+  font-size: 40px;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 6vw 0 4vw 0;
+}
+
 section.lancamentos ul{
   display: flex;
   flex-wrap: wrap;
@@ -434,8 +421,26 @@ section.lancamentos ul{
 section.lancamentos ul li{
   width: 22%;
 }
-
-
+section.capaLancamentos {
+  width: 274px;
+  height: 414px;
+  top: 1040px;
+  left: 124px;
+  border-radius: 3px;
+}
+section.lancamentos {
+  margin: 0 0 0 7vw;
+}
+section.lancamentos button.botaoComprar {
+  width: 274px;
+  height: 48px;
+  top: 1617px;
+  left: 1042px;
+  border-radius: 2px;
+  background-color: #27AE60;
+  color: white;
+  border: none;
+}
 /*CARINHO*/
 
 
