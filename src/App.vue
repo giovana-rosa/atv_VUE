@@ -51,14 +51,12 @@ const produtos = [
       preco: 15.81},
   ];
 
-      const cupom = GIO15; 
 </script>
 
 <template>
   <header>
     <p>IFbooks<span class="IFbook"></span></p>
-    <p class="apreco_leitura">Apreço a <br>
-        leitura</p>
+    <p class="apreco_leitura">Apreço a <br> leitura</p>
         <div id="divPesquisa">
           <input type="text" id="textotBarraDePesquisa" placeholder="Pesquisar" />
           <button id="lupa" aria-label="Pesquisar"><span class="fa-solid fa-magnifying-glass"></span></button>
@@ -104,10 +102,10 @@ const produtos = [
       <ul>
         <li v-for="produto in produtos" :key="produto.id">
           <article>
-            <img :src="produto.capa" alt="Capa do livro" class=capaLancamentos/>
-            <h3>{{ produto.titulo }}</h3>
-            <p>{{ produto.autor }}</p>
-            <p>{{ 'R$ ' + produto.preco.toFixed(2).replace('.', ',') }}</p>
+            <img :src="produto.capa" alt="Capa do livro" class="capaLancamentos"/>
+            <h3 class="tituloProduto">{{ produto.titulo }}</h3>
+            <p class="autorProduto">{{ produto.autor }}</p>
+            <p class="precoProduto">{{ 'R$ '+ produto.preco.toFixed(2)}}</p>
             <button class="botaoComprar"><span class="fa-solid fa-cart-shopping" style="color: white;"></span> Comprar</button>
           </article>
         </li>
@@ -180,6 +178,9 @@ const produtos = [
 /* GERAL */
 
 p, h1, h2, h3, h4, h5, h6 {
+  font-family: Arial, Helvetica, sans-serif;
+}
+section.Informacao div ul li a {
   font-family: Arial, Helvetica, sans-serif;
 }
 button {
@@ -265,6 +266,9 @@ header nav ul li a {
 section.banner  {
   display: flex;
 }
+section.banner h1 {
+  font-weight: bold;
+}
 div.introducaoBanner span {
    border: 1px solid #27AE60;
   padding: 10.01px;
@@ -327,6 +331,9 @@ section.Informacao {
   border-top: 1px solid #27AE60;
   border-bottom: 1px solid #27AE60;
   padding: 4vw 0 4vw 0;
+}
+section.Informacao div ul li { /* N E G R I T O */
+  font-weight: bold;
 }
 .iconesDeInformacao ul   {
   display: flex;
@@ -431,6 +438,16 @@ section.capaLancamentos {
 section.lancamentos {
   margin: 0 0 0 7vw;
 }
+section.lancamentos .tituloProduto, .precoProduto {
+  font-weight: bold;
+}
+section.lancamentos img, h3, p, p, button {
+  padding: 0.8vw 0 0.8vw 0;
+}
+section.lancamentos button {
+  margin: 0 0 6.5vw 0;
+}
+
 section.lancamentos button.botaoComprar {
   width: 274px;
   height: 48px;
@@ -441,95 +458,84 @@ section.lancamentos button.botaoComprar {
   color: white;
   border: none;
 }
-/*CARINHO*/
 
+/*CARINHO*/
 
 .linhaDivisoria {
   border-left: 1px solid #ccc;
   padding-left: 10px;
   margin-left: 10px;
 }
+section.carrinhoBanner h2 {
+  color: #27AE60;
+  font-size: 38px;
+  margin: 7vw 0 0 14vw;
+}
+section.carrinhoBanner .informacoesCarrinhos {
+  display: flex;
+  font-size: 24px;
+  border-bottom: 1px solid #27AE60;
+  margin: 3vw 14vw 5vw;
+}
+section.carrinhoBanner .informacoesCarrinhos p.carrinhoQuantidade {
+  margin: 0 25vw 0 30vw;
+}
+section.carrinhoBotoes .funcionalidadesCarinho button.voltarLoja {
+  background-color: white;
+  border: none;
+  border: 1px solid #000000;
+  padding: 0.8vw 2vw 0.8vw 2vw;
+  border-radius: 4px;
+  margin: 0 13vw 2vw 13vw;
+}
+section.carrinhoBotoes .funcionalidadesCarinho button.voltarLoja a {
+  text-decoration: none;
+  color: #000000;
+  font-size: 1.3rem;
+}
+section.carrinhoBotoes div input {
+  padding: 0.8vw 2vw 0.8vw 1.4vw;
+  margin: 0 1vw 0 13vw;
+  border: 1px solid #000000;
+  border-radius: 4px;
+}
+section.carrinhoBotoes button.inserirCupom {
+  border: 1px solid #27AE60;
+  background-color: #27AE60;
+  padding: 0.8vw 1.5vw 0.8vw 1.5vw;
+  text-decoration: none;
+  color: white;
+  border-radius: 4px;
+}
+ section.carrinhoBotoes div.totalDaCompraCarrinho {
+  border: 1px solid #000000;
+  width: 470px;
+  height: 324px;
+  margin: 0 0 3vw 65vw;
+} 
 
-
-  section.carrinhoBanner h2 {
-    color: #27AE60;
-    font-size: 38px;
-    margin: 7vw 0 0 14vw;
+section.carrinhoBotoes div.totalDaCompraCarrinho  p {
+  margin: 1vw 1vw 0 1vw;
+}
+section.carrinhoBotoes div.totalDaCompraCarrinho p.totalCompra {
+  font-size: 1vw;
 }
 
-  section.carrinhoBanner .informacoesCarrinhos {
-    display: flex;
-    font-size: 24px;
-    border-bottom: 1px solid #27AE60;
-    margin: 3vw 14vw 5vw;
-  }
+section.carrinhoBotoes div.totalDaCompraCarrinho p.produtos {
+  border-bottom: 1px solid #000000;
+}
 
-  section.carrinhoBanner .informacoesCarrinhos p.carrinhoQuantidade {
-    margin: 0 25vw 0 30vw;
-  }
+section.carrinhoBotoes div.totalDaCompraCarrinho p.frete {
+  border-bottom: 1px solid #000000;
+}
 
-  section.carrinhoBotoes .funcionalidadesCarinho button.voltarLoja {
-    background-color: white;
-    border: none;
-    border: 1px solid #000000;
-    padding: 0.8vw 2vw 0.8vw 2vw;
-    border-radius: 4px;
-    margin: 0 13vw 2vw 13vw;
-  }
-
-  section.carrinhoBotoes .funcionalidadesCarinho button.voltarLoja a {
-    text-decoration: none;
-    color: #000000;
-    font-size: 1.3rem;
-  }
-
-  section.carrinhoBotoes div input {
-    padding: 0.8vw 2vw 0.8vw 1.4vw;
-    margin: 0 1vw 0 13vw;
-    border: 1px solid #000000;
-    border-radius: 4px;
-  }
-
-  section.carrinhoBotoes button.inserirCupom {
-    border: 1px solid #27AE60;
-    background-color: #27AE60;
-    padding: 0.8vw 1.5vw 0.8vw 1.5vw;
-    text-decoration: none;
-    color: white;
-    border-radius: 4px;
-  }
-
-  section.carrinhoBotoes div.totalDaCompraCarrinho {
-    border: 1px solid #000000;
-    width: 470px;
-    height: 324px;
-    margin: 0 0 3vw 65vw;
-  } 
-
-  section.carrinhoBotoes div.totalDaCompraCarrinho  p {
-    margin: 1vw 1vw 0 1vw;
-  }
-
-
-  section.carrinhoBotoes div.totalDaCompraCarrinho p.totalCompra {
-    font-size: 1vw;
-  }
-
-  section.carrinhoBotoes div.totalDaCompraCarrinho p.produtos {
-    border-bottom: 1px solid #000000;
-  }
-
-  section.carrinhoBotoes div.totalDaCompraCarrinho p.frete {
-    border-bottom: 1px solid #000000;
-  }
-
-  section.carrinhoBotoes div.totalDaCompraCarrinho button {
-    border: 1px solid #27AE60;
-    background-color: #27AE60;
-    padding: 0.8vw 1.5vw 0.8vw 1.5vw;
-    text-decoration: none;
-    color: white;
-    border-radius: 4px;
-    margin: 1vw 1vw 0 6vw;
-  }
+section.carrinhoBotoes div.totalDaCompraCarrinho button {
+  border: 1px solid #27AE60;
+  background-color: #27AE60;
+  padding: 0.8vw 1.5vw 0.8vw 1.5vw;
+  text-decoration: none;
+  color: white;
+  border-radius: 4px;
+  margin: 1vw 1vw 0 6vw;
+}
 </style>
