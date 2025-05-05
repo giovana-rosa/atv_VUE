@@ -1,5 +1,5 @@
 <script setup>
-import {ref, computed} from 'vue'
+import { ref, computed } from 'vue'
 
 const produtos = [
     { id: 1,
@@ -50,6 +50,28 @@ const produtos = [
       autor: 'Emily Henry', 
       preco: 15.81},
   ];
+
+const carrinho = {
+    items: [
+   
+    ],
+    frete: 0,
+    desconto: 0,
+    total: 0,
+};
+
+
+function adicionarCarrinho(idItem) {
+    console.log(idItem);
+
+    let livro = produtos.find(({ id }) => id == idItem);
+    console.log(livro)
+    
+    carrinho.items.push({id: idItem, titulo: livro.titulo, preco: livro.preco, quantidade: livro.quantidade, valorTotal: livro.valorTotal })
+
+    console.log(carrinho)
+   }
+
 
 </script>
 
@@ -105,8 +127,8 @@ const produtos = [
             <img :src="produto.capa" alt="Capa do livro" class="capaLancamentos"/>
             <h3 class="tituloProduto">{{ produto.titulo }}</h3>
             <p class="autorProduto">{{ produto.autor }}</p>
-            <p class="precoProduto">{{ 'R$ '+ produto.preco.toFixed(2)}}</p>
-            <button class="botaoComprar"><span class="fa-solid fa-cart-shopping" style="color: white;"></span> Comprar</button>
+            <p class="precoProduto"> {{ 'R$ '+ produto.preco.toFixed(2)}}</p> <span class="fa-regular fa-heart"></span>
+            <button class="botaoComprar" @click="adicionarCarrinho(produto.id)"><span class="fa-solid fa-cart-shopping" style="color: white;"></span> Comprar</button>
           </article>
         </li>
       </ul>
@@ -144,9 +166,9 @@ const produtos = [
     <div class="esquerdo">
       <p class="logo">IFbooks</p>
       <ul class="icones">
-        <li><span class="fa-brands fa-square-facebook" style="color: #ffffff;"></span></li>
-        <li><span class="fa-brands fa-instagram" style="color: #ffffff;"></span></li>
-        <li><span class="fa-brands fa-square-twitter" style="color: #ffffff;"></span></li>
+        <li><a href="https://www.facebook.com/?locale=pt_BR"><span class="fa-brands fa-square-facebook" style="color: #ffffff;"></span></a></li>
+        <li><a href="https://www.instagram.com/"><span class="fa-brands fa-instagram" style="color: #ffffff;"></span></a></li>
+        <li><a href="https://x.com/?lang=pt"><span class="fa-brands fa-square-twitter" style="color: #ffffff;"></span></a></li>
       </ul>
     </div>
     <div class="direito">
