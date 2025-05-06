@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, reactive } from 'vue'
 
 const produtos = [
     { id: 1,
@@ -51,26 +51,36 @@ const produtos = [
       preco: 15.81},
   ];
 
-const carrinho = {
+const carrinho = reactive({
     items: [
    
     ],
     frete: 0,
     desconto: 0,
     total: 0,
-};
+});
 
 
 function adicionarCarrinho(idItem) {
-    console.log(idItem);
+  console.log(idItem);
 
-    let livro = produtos.find(({ id }) => id == idItem);
-    console.log(livro)
-    
-    carrinho.items.push({id: idItem, titulo: livro.titulo, preco: livro.preco, quantidade: livro.quantidade, valorTotal: livro.valorTotal })
+  let livro = produtos.find(({ id }) => id == idItem);
 
-    console.log(carrinho)
-   }
+  console.log(livro)
+
+  carrinho.items.push({id: idItem, capa: livro.capa, titulo: livro.titulo, autor: livro.autor, preco: livro.preco, quantidade: 1, valorTotal: livro.preco * 1 })
+  console.log(carrinho)
+}
+
+const contador = ref(0)
+
+function incrementar () {
+contador.value++
+}
+
+function decrementar () {
+contador.value--
+}
 
 
 </script>
@@ -127,7 +137,7 @@ function adicionarCarrinho(idItem) {
             <img :src="produto.capa" alt="Capa do livro" class="capaLancamentos"/>
             <h3 class="tituloProduto">{{ produto.titulo }}</h3>
             <p class="autorProduto">{{ produto.autor }}</p>
-            <p class="precoProduto"> {{ 'R$ '+ produto.preco.toFixed(2)}}</p> <span class="fa-regular fa-heart"></span>
+            <p class="precoProduto"> {{ 'R$ '+ produto.preco.toFixed(2)}} <span class="fa-regular fa-heart"></span></p>
             <button class="botaoComprar" @click="adicionarCarrinho(produto.id)"><span class="fa-solid fa-cart-shopping" style="color: white;"></span> Comprar</button>
           </article>
         </li>
@@ -136,9 +146,28 @@ function adicionarCarrinho(idItem) {
   <section class="carrinhoBanner">
     <h2>Carrinho</h2>
     <div class="informacoesCarrinhos">
-      <p>Título</p>  
-      <p class="carrinhoQuantidade">Quantidade</p>
-      <p>Subtotal</p>
+      <h3>Título</h3>
+      <ul>
+        <li v-for="produto in carrinho.items" :key="produto.id">
+          <article>
+            <div>
+              <div>
+                <img :src="produto.capa" alt="Capa do livro" class="capaLancamentos"/>
+              </div>
+              <div class="informacoesProdutosCarrinho">
+                <h3 class="tituloProduto">{{ produto.titulo }}</h3>
+                <p class="autorProduto">{{ produto.autor }}</p>
+                <p class="precoProduto"> {{ 'R$ '+ produto.preco.toFixed(2)}}</p>
+              </div>
+            </div>
+          </article>
+        </li>
+      </ul>  
+      <h3 class="carrinhoQuantidade">Quantidade</h3>
+        <button v-on:click="incrementar">+</button>
+        <p>{{ contador }}</p>
+        <button @click="decrementar">-</button>
+      <h3>Subtotal</h3>
     </div>
   </section>
   <section class="carrinhoBotoes">
@@ -499,9 +528,31 @@ section.carrinhoBanner .informacoesCarrinhos {
   border-bottom: 1px solid #27AE60;
   margin: 3vw 14vw 5vw;
 }
-section.carrinhoBanner .informacoesCarrinhos p.carrinhoQuantidade {
+
+section.carrinhoBanner .informacoesCarrinhos  img {
+  width: 94px;
+  height: 142px;
+  top: 496px;
+  left: 155px;
+  border-radius: 3px;
+}
+
+
+section.carrinhoBanner .informacoesCarrinhos div {
+  display: flex;
+
+}
+
+
+section.carrinhoBanner .informacoesCarrinhos .informacoesProdutosCarrinho {
+  display: block;
+  margin: 0 0 0 1vw;
+}
+
+section.carrinhoBanner .informacoesCarrinhos h3.carrinhoQuantidade {
   margin: 0 25vw 0 30vw;
 }
+
 section.carrinhoBotoes .funcionalidadesCarinho button.voltarLoja {
   background-color: white;
   border: none;
