@@ -1,55 +1,77 @@
 <script setup>
 import { ref, computed, reactive } from 'vue'
 
-const produtos = [
-    { id: 1,
-      capa: '/img/Chain_of_Iron_Vol.2.png',
-      titulo: 'Chain of Iron: Volume 2',
-      autor: 'Cassandra Clare',
-      preco: 23.24},
+const produtos = ref([
+  { 
+    id: 1,
+    capa: '/img/Chain_of_Iron_Vol.2.png',
+    titulo: 'Chain of Iron: Volume 2',
+    autor: 'Cassandra Clare',
+    preco: 23.24,
+    favorito: false     
+  },
+  { 
+    id: 2,
+    capa: '/img/Chain_of_Thorns.png',
+    titulo: 'Chain of Thorns',
+    autor: 'Cassandra Clare',
+    preco: 23.24,
+    favorito: false
+  },
+  { 
+    id: 3,
+    capa: '/img/City_of_Fallen_Angels.png',
+    titulo: 'City of Fallen Angels',
+    autor: 'Cassandra Clare', 
+    preco: 13.94,
+    favorito: false
+  },
+  { 
+    id: 4,
+    capa: '/img/Nona_the_Ninth.png', 
+    titulo: 'Nona the Ninth', 
+    autor: 'Cassandra Clare', 
+    preco: 16.84,
+    favorito: false
+  },
+  { 
+    id: 5, 
+    capa: '/img/Harlem_Shuffle.png', 
+    titulo: 'Harlem Shuffle', 
+    autor: 'Colson Whitehead', 
+    preco: 26.92,
+    favorito: false
+  },
+  { 
+    id: 6, 
+    capa: '/img/Two_Old_Women.png', 
+    titulo: 'Two Old Women', 
+    autor: 'Velma Wallis', 
+    preco: 13.95,
+    favorito: false
+  },
+  { 
+    id: 7, 
+    capa: '/img/Carrie_Soto_Is_Back.png', 
+    titulo: 'Carrie Soto Is Back', 
+    autor: 'Taylor Jenkins Reid', 
+    preco: 26.04,
+    favorito: false
+  },
+  { 
+    id: 8, 
+    capa: '/img/Book_Lovers.png', 
+    titulo: 'Book Lovers', 
+    autor: 'Emily Henry', 
+    preco: 15.81,
+    favorito: false
+  }
+]);
 
-    { id: 2,
-      capa: '/img/Chain_of_Thorns.png',
-      titulo: 'Chain of Thorns',
-      autor: 'Cassandra Clare',
-      preco: 23.24},
 
-    { id: 3,
-      capa: '/img/City_of_Fallen_Angels.png',
-      titulo: 'City of Fallen Angels',
-      autor: 'Cassandra Clare', 
-      preco: 13.94},
-
-    { id: 4,
-      capa: '/img/Nona_the_Ninth.png', 
-      titulo: 'Nona the Ninth', 
-      autor: 'Cassandra Clare', 
-      preco: 16.84},
-
-    { id: 5, 
-      capa: '/img/Harlem_Shuffle.png', 
-      titulo: 'Harlem Shuffle', 
-      autor: 'Colson Whitehead', 
-      preco: 26.92},
-
-    { id: 6, 
-      capa: '/img/Two_Old_Women.png', 
-      titulo: 'Two Old Women', 
-      autor: 'Velma Wallis', 
-      preco: 13.95},
-
-    { id: 7, 
-      capa: '/img/Carrie_Soto_Is_Back.png', 
-      titulo: 'Carrie Soto Is Back', 
-      autor: 'Taylor Jenkins Reid', 
-      preco: 26.04},
-
-    { id: 8, 
-      capa: '/img/Book_Lovers.png', 
-      titulo: 'Book Lovers', 
-      autor: 'Emily Henry', 
-      preco: 15.81},
-  ];
+function alternarFavorito(produto) {
+  produto.favorito = !produto.favorito
+}
 
 const carrinho = reactive({
     items: [
@@ -64,24 +86,49 @@ const carrinho = reactive({
 function adicionarCarrinho(idItem) {
   console.log(idItem);
 
-  let livro = produtos.find(({ id }) => id == idItem);
+  let livro = produtos.value.find(({ id }) => id == idItem);
 
   console.log(livro)
 
-  carrinho.items.push({id: idItem, capa: livro.capa, titulo: livro.titulo, autor: livro.autor, preco: livro.preco, quantidade: 1, valorTotal: livro.preco * 1 })
-  console.log(carrinho)
+  let itemNoCarrinho = carrinho.items.find(item => item.id === idItem);
+
+  if (itemNoCarrinho) {
+    itemNoCarrinho.quantidade += 1;
+    itemNoCarrinho.valorTotal = itemNoCarrinho.quantidade * itemNoCarrinho.preco;
+  } else {
+    carrinho.items.push({
+      id: idItem,
+      capa: livro.capa,
+      titulo: livro.titulo,
+      autor: livro.autor,
+      preco: livro.preco,
+      quantidade: 1,
+      valorTotal: livro.preco
+    });
+  }
+
+  console.log(carrinho);
 }
 
 const contador = ref(0)
 
-function incrementar () {
-contador.value++
+function incrementar() {
+  contador.value++
 }
 
-function decrementar () {
-contador.value--
+function decrementar() {
+  if (contador.value > 0) {
+    contador.value--
+  }
 }
 
+function calcularValorTotal() {
+  let total = 0;
+  carrinho.items.forEach(item => {
+    total += item.valorTotal;
+  });
+  return total;
+}
 
 </script>
 
@@ -99,7 +146,7 @@ contador.value--
         <li><a href="#">Equipe</a></li>
         <li><a href="#">Envio</a></li>
         <li><a href="#">Devoluções</a></li>
-        <li><span class="fa-solid fa-cart-shopping icone"></span></li>
+        <li><a href="#carrinhoBanner"><span class="fa-solid fa-cart-shopping icone"></span></a></li>
         <li><span class="fa-solid fa-heart icone"></span></li>
         <li><span class="fa-solid fa-user icone-user"></span></li>
       </ul>
@@ -107,6 +154,7 @@ contador.value--
   </header>
   
   <main>
+
     <section class="banner"> 
       <div class="introducaoBanner">
         <p class="autor_abril"><span>Autor de Abril</span></p>
@@ -129,7 +177,8 @@ contador.value--
         </ul>
       </div>
     </section> 
-    <section class="lancamentos">
+
+    <section id="lancamentos" class="lancamentos">
       <h2>Lançamentos</h2>
       <ul>
         <li v-for="produto in produtos" :key="produto.id">
@@ -137,13 +186,14 @@ contador.value--
             <img :src="produto.capa" alt="Capa do livro" class="capaLancamentos"/>
             <h3 class="tituloProduto">{{ produto.titulo }}</h3>
             <p class="autorProduto">{{ produto.autor }}</p>
-            <p class="precoProduto"> {{ 'R$ '+ produto.preco.toFixed(2)}} <span class="fa-regular fa-heart"></span></p>
+            <p class="precoProduto">{{ 'R$ ' + produto.preco.toFixed(2) }}<span :class="[produto.favorito ? 'fa-solid favorito' : 'fa-regular', 'fa-heart', 'iconeCoracao']" @click="alternarFavorito(produto)" style="cursor: pointer;"></span></p>
             <button class="botaoComprar" @click="adicionarCarrinho(produto.id)"><span class="fa-solid fa-cart-shopping" style="color: white;"></span> Comprar</button>
           </article>
         </li>
       </ul>
     </section>
-  <section class="carrinhoBanner">
+
+    <section id="carrinhoBanner" class="carrinhoBanner">
     <h2>Carrinho</h2>
     <div class="informacoesCarrinhos">
       <h3>Título</h3>
@@ -163,17 +213,18 @@ contador.value--
           </article>
         </li>
       </ul>  
-      <h3 class="carrinhoQuantidade">Quantidade</h3>
+        <h3 class="carrinhoQuantidade">Quantidade</h3>
         <button v-on:click="incrementar">+</button>
         <p>{{ contador }}</p>
         <button @click="decrementar">-</button>
       <h3>Subtotal</h3>
     </div>
   </section>
+
   <section class="carrinhoBotoes">
     <div class="funcionalidadesCarinho">
       <div>
-        <button class="voltarLoja"><a href="#">Voltar para loja</a></button>
+        <button class="voltarLoja"><a href="#lancamentos">Voltar para loja</a></button>
       </div>
       <div>
         <input type="text" id="cupomDeDesconto" placeholder="Código do cupom" />
@@ -213,9 +264,7 @@ contador.value--
         <img src="/img/paypal_card.png" alt="Cartão PAYPAL">
         <img src="/img/Master_card.png" alt="Cartão MasterCard">
         <img src="/img/VISA_card.png" alt="Cartão VISA">
-       
       </div>
-    
     </div>
   </div>
   <p class="direitos">&copy; Alguns direitos reservados. IFbooks 2025.</p>
@@ -228,6 +277,9 @@ contador.value--
 
 /* GERAL */
 
+html {
+  scroll-behavior: smooth;
+}
 p, h1, h2, h3, h4, h5, h6 {
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -248,7 +300,6 @@ color: #27AE60;
   position: relative;
   display: inline-block;
 }
-
 #textotBarraDePesquisa {
   padding-right: 35px; /* espaço pra lupa não ficar em cima do texto */
   width: 376.52px;
@@ -261,7 +312,6 @@ color: #27AE60;
   color: #000000;
   font-family: Arial, Helvetica, sans-serif;
 }
-
 #lupa {
   position: absolute;
   right: 5px;
@@ -273,7 +323,6 @@ color: #27AE60;
   color: #231F2D;
   font-size: 16px;
 }
-
 header {
   display: flex;
   padding: 2vw 2vw 2vw 3vw;
@@ -408,7 +457,7 @@ section.Informacao div ul li { /* N E G R I T O */
 
 /*FOOTER*/
  
-  .footer {
+.footer {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -416,46 +465,39 @@ section.Informacao div ul li { /* N E G R I T O */
   background-color: #27AE60;
   color: white;
 }
-
-  .esquerdo {
+.esquerdo {
   display: flex;
   flex-direction: column;
   gap: 15px;display: flex;
   margin: 2vw 2vw 2vw 3vw;
   justify-content: center;
 }
-
-  .direitos {
+.direitos {
   border-top: 1px solid #ffff;
   display: flex;
   flex-direction: column;
   gap: 15px;
 }
-
-  .logo {
+.logo {
   font-size: 1.5rem;
   font-weight: bold;
 }
-
-  .icones {
+.icones {
   list-style: none;
   display: flex;
   gap: 15px;
   padding: 0;
   margin: 0;
 }
-
-  .contato p {
+.contato p {
   margin: 0;
   line-height: 1.6;
 }
-
-  .cartoes img {
+.cartoes img {
   width: 50px;
   margin-right: 10px;
 }
-
-  .direitos {
+.direitos {
   text-align: center;
   padding: 15px;
   font-size: 0.9rem;
@@ -471,7 +513,6 @@ section.lancamentos h2 {
   font-family: Arial, Helvetica, sans-serif;
   padding: 6vw 0 4vw 0;
 }
-
 section.lancamentos ul{
   display: flex;
   flex-wrap: wrap;
@@ -498,7 +539,6 @@ section.lancamentos img, h3, p, p, button {
 section.lancamentos button {
   margin: 0 0 6.5vw 0;
 }
-
 section.lancamentos button.botaoComprar {
   width: 274px;
   height: 48px;
@@ -528,7 +568,6 @@ section.carrinhoBanner .informacoesCarrinhos {
   border-bottom: 1px solid #27AE60;
   margin: 3vw 14vw 5vw;
 }
-
 section.carrinhoBanner .informacoesCarrinhos  img {
   width: 94px;
   height: 142px;
@@ -536,23 +575,16 @@ section.carrinhoBanner .informacoesCarrinhos  img {
   left: 155px;
   border-radius: 3px;
 }
-
-
 section.carrinhoBanner .informacoesCarrinhos div {
   display: flex;
-
 }
-
-
 section.carrinhoBanner .informacoesCarrinhos .informacoesProdutosCarrinho {
   display: block;
   margin: 0 0 0 1vw;
 }
-
 section.carrinhoBanner .informacoesCarrinhos h3.carrinhoQuantidade {
   margin: 0 25vw 0 30vw;
 }
-
 section.carrinhoBotoes .funcionalidadesCarinho button.voltarLoja {
   background-color: white;
   border: none;
@@ -610,5 +642,12 @@ section.carrinhoBotoes div.totalDaCompraCarrinho button {
   color: white;
   border-radius: 4px;
   margin: 1vw 1vw 0 6vw;
+}
+
+.favorito {
+  color: #27AE60;
+}
+.iconeCoracao {
+  color: #27AE60;
 }
 </style>
