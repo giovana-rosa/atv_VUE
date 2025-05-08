@@ -83,6 +83,9 @@ contador.value--
 }
 
 
+    function toggleIcone(icone) {
+  icone.classList.toggle('liked');
+}
 </script>
 
 <template>
@@ -137,7 +140,7 @@ contador.value--
             <img :src="produto.capa" alt="Capa do livro" class="capaLancamentos"/>
             <h3 class="tituloProduto">{{ produto.titulo }}</h3>
             <p class="autorProduto">{{ produto.autor }}</p>
-            <p class="precoProduto"> {{ 'R$ '+ produto.preco.toFixed(2)}} <span class="fa-regular fa-heart"></span></p>
+            <p class="precoProduto"> {{ 'R$ '+ produto.preco.toFixed(2)}} <span class="fa-regular fa-heart iconeCoracao"></span></p>
             <button class="botaoComprar" @click="adicionarCarrinho(produto.id)"><span class="fa-solid fa-cart-shopping" style="color: white;"></span> Comprar</button>
           </article>
         </li>
@@ -510,6 +513,8 @@ section.lancamentos button.botaoComprar {
   border: none;
 }
 
+
+
 /*CARINHO*/
 
 .linhaDivisoria {
@@ -528,7 +533,6 @@ section.carrinhoBanner .informacoesCarrinhos {
   border-bottom: 1px solid #27AE60;
   margin: 3vw 14vw 5vw;
 }
-
 section.carrinhoBanner .informacoesCarrinhos  img {
   width: 94px;
   height: 142px;
@@ -536,23 +540,16 @@ section.carrinhoBanner .informacoesCarrinhos  img {
   left: 155px;
   border-radius: 3px;
 }
-
-
 section.carrinhoBanner .informacoesCarrinhos div {
   display: flex;
-
 }
-
-
 section.carrinhoBanner .informacoesCarrinhos .informacoesProdutosCarrinho {
   display: block;
   margin: 0 0 0 1vw;
 }
-
 section.carrinhoBanner .informacoesCarrinhos h3.carrinhoQuantidade {
   margin: 0 25vw 0 30vw;
 }
-
 section.carrinhoBotoes .funcionalidadesCarinho button.voltarLoja {
   background-color: white;
   border: none;
@@ -586,14 +583,12 @@ section.carrinhoBotoes button.inserirCupom {
   height: 324px;
   margin: 0 0 3vw 65vw;
 } 
-
 section.carrinhoBotoes div.totalDaCompraCarrinho  p {
   margin: 1vw 1vw 0 1vw;
 }
 section.carrinhoBotoes div.totalDaCompraCarrinho p.totalCompra {
   font-size: 1vw;
 }
-
 section.carrinhoBotoes div.totalDaCompraCarrinho p.produtos {
   border-bottom: 1px solid #000000;
 }
@@ -601,7 +596,6 @@ section.carrinhoBotoes div.totalDaCompraCarrinho p.produtos {
 section.carrinhoBotoes div.totalDaCompraCarrinho p.frete {
   border-bottom: 1px solid #000000;
 }
-
 section.carrinhoBotoes div.totalDaCompraCarrinho button {
   border: 1px solid #27AE60;
   background-color: #27AE60;
@@ -610,5 +604,8 @@ section.carrinhoBotoes div.totalDaCompraCarrinho button {
   color: white;
   border-radius: 4px;
   margin: 1vw 1vw 0 6vw;
+}
+.iconeCoracao {
+  color: #27AE60;
 }
 </style>
