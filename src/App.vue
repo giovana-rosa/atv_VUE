@@ -122,14 +122,6 @@ function decrementar() {
   }
 }
 
-function calcularValorTotal() {
-  let total = 0;
-  carrinho.items.forEach(item => {
-    total += item.valorTotal;
-  });
-  return total;
-}
-
 </script>
 
 <template>
@@ -232,9 +224,9 @@ function calcularValorTotal() {
       </div>
       <div class="totalDaCompraCarrinho">
         <p class="totalCompra">Total da Compra</p>
-        <p class="produtos">Produtos:</p>
-        <p class="frete">Frete:</p>
-        <p>Total:</p>
+        <p class="produtos">Produtos:  </p>
+        <p class="frete">Frete: Grátis</p>
+        <p>Total: </p>
         <button>Ir para o pagamento</button>
       </div>
     </div>
