@@ -68,27 +68,23 @@ const produtos = ref([
   }
 ]);
 
-
 function alternarFavorito(produto) {
   produto.favorito = !produto.favorito
 }
 
 const carrinho = reactive({
-    items: [
-   
-    ],
-    frete: 0,
-    desconto: 0,
-    total: 0,
+  items: [
+
+  ],
+  frete: 0,
+  desconto: 0,
+  total: computed(() => {
+    return carrinho.items.reduce((total, item) => total + item.valorTotal, 0);
+  }),
 });
 
-
 function adicionarCarrinho(idItem) {
-  console.log(idItem);
-
-  let livro = produtos.value.find(({ id }) => id == idItem);
-
-  console.log(livro)
+  let livro = produtos.value.find(({ id }) => id === idItem);
 
   let itemNoCarrinho = carrinho.items.find(item => item.id === idItem);
 
@@ -106,8 +102,6 @@ function adicionarCarrinho(idItem) {
       valorTotal: livro.preco
     });
   }
-
-  console.log(carrinho);
 }
 
 const contador = ref(0)
@@ -205,11 +199,12 @@ function decrementar() {
           </article>
         </li>
       </ul>  
-        <h3 class="carrinhoQuantidade">Quantidade</h3>
-        <button v-on:click="incrementar">+</button>
-        <p>{{ contador }}</p>
-        <button @click="decrementar">-</button>
+      <h3 class="carrinhoQuantidade">Quantidade</h3>
+      <button>-</button>
+      <p>{{ contador }}</p>
+      <button>+</button>
       <h3>Subtotal</h3>
+      
     </div>
   </section>
 
@@ -575,7 +570,7 @@ section.carrinhoBanner .informacoesCarrinhos .informacoesProdutosCarrinho {
   margin: 0 0 0 1vw;
 }
 section.carrinhoBanner .informacoesCarrinhos h3.carrinhoQuantidade {
-  margin: 0 25vw 0 30vw;
+  margin: 0 25vw 0 20vw;
 }
 section.carrinhoBotoes .funcionalidadesCarinho button.voltarLoja {
   background-color: white;
@@ -633,13 +628,19 @@ section.carrinhoBotoes div.totalDaCompraCarrinho button {
   text-decoration: none;
   color: white;
   border-radius: 4px;
-  margin: 1vw 1vw 0 6vw;
+  margin: 0.4vw 5vw 0 8vw;
 }
+
+section.carrinhoBanner img {
+  margin: 2vw 3vw 0 0;
+}
+
 
 .favorito {
   color: #27AE60;
 }
 .iconeCoracao {
   color: #27AE60;
+  margin: 0 0 0 10.3vw;
 }
 </style>
